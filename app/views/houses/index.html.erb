@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+<div class="jumbotron">
+
+  <h1>Houses</h1>
+
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th>No</th>
+      <th>Name</th>
+      <th>Residence association</th>
+      <th colspan="2"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @houses.each do |house| %>
+        <tr>
+          <td><%= house.no %></td>
+          <td><%= link_to house.name, house_url(house, subdomain: house.residence_association.subdomain) %></td>
+          <td><%= house.residence_association.name %></td>
+          <% if current_association_admin == house.residence_association.association_admin %>
+              <td><%= link_to 'Edit', edit_house_url(house, subdomain: house.residence_association.subdomain) %></td>
+              <td><%= link_to 'Destroy', house_url(house, subdomain: house.residence_association.subdomain), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'New House', new_house_path %>
+
+</div>

@@ -1,0 +1,1 @@
+json.array! @residence_associations, partial: 'residence_associations/residence_association', as: :residence_association

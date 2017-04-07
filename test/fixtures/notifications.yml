@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyString
+  activator_id: 1
+  activator_type: MyString
+  eventable_id: 1
+  eventable_type: MyString
+
+two:
+  content: MyString
+  activator_id: 1
+  activator_type: MyString
+  eventable_id: 1
+  eventable_type: MyString

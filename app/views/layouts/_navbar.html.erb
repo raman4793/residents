@@ -1,0 +1,9 @@
+<% if admin_signed_in? %>
+    <%= render 'layouts/navbars/admin' %>
+<% elsif association_admin_signed_in? %>
+    <%= render 'layouts/navbars/association_admin' %>
+<% elsif member_signed_in? %>
+    <%= render 'layouts/navbars/member' %>
+<% else %>
+    <%= render 'layouts/navbars/default' %>
+<% end %>

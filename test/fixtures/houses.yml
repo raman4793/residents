@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  'no': MyString
+  name: MyString
+  lat: 9.99
+  lng: 9.99
+  residence_association: one
+
+two:
+  'no': MyString
+  name: MyString
+  lat: 9.99
+  lng: 9.99
+  residence_association: two

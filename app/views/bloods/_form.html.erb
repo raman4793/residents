@@ -1,0 +1,22 @@
+<%= form_for(blood) do |f| %>
+  <% if blood.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(blood.errors.count, "error") %> prohibited this blood from being saved:</h2>
+
+      <ul>
+      <% blood.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :group %>
+    <%= f.text_field :group %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

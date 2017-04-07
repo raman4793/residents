@@ -1,0 +1,24 @@
+$('#show-convo').html('');
+$('#show-convo').html(
+  '<div id="msg-srl" class="pre-scrollable">'+
+  '<% @conversation.messages.each do |message| %>'+
+  '<% pull='pull-right' %>'+
+  '<% if message.sender != @user %>'+
+  '<% pull='pull-left' %>'+
+  '<% end %>'+
+  '<div style="background-color: #4285F4" class="well <%= pull %>">'+
+  '<div ">'+
+  '<%= message.content %>'+
+  '</div>'+
+  '</div>'+
+  '<br><br><br><br>'+
+  '<% end %>'+
+  '</div><br>'+
+  '<%= form_for @conversation.messages.build, remote: true do |f| %>'+
+  '<%= f.hidden_field :conversation_id, value: @conversation.id %>'+
+  '<%= f.hidden_field :sender_type, value: @user.class.name %>'+
+  '<%= f.hidden_field :sender_id, value: @user.id %>'+
+  '<%= f.text_field :content, class: 'form-control' %><br>'+
+  '<%= f.submit 'Send', class: 'btn btn-primary' %>'+
+  '<% end %>'
+);

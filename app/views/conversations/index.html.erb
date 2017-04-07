@@ -1,0 +1,83 @@
+<div class="container-fluid">
+  <a id="modal-948471" href="#modal-container-948471" role="button" class="btn btn-default" data-toggle="modal">New Message</a>
+  <br><br>
+  <div class="row">
+    <div class="col-md-3 well">
+      <div>
+        <% @conversations.each do |conversation| %>
+            <% if @user == conversation.sendable %>
+                <p>
+                  <%= link_to conversation.recipientable.name, conversation_path(conversation), remote: true %>
+                </p>
+            <% else %>
+                <p>
+                  <%= link_to conversation.sendable.name, conversation_path(conversation), remote: true %>
+                </p>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-9 well">
+      <div id="show-convo">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="modal fade" id="modal-container-948471" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          ×
+        </button>
+        <h4 class="modal-title" id="myModalLabel">
+          New Conversation
+        </h4>
+      </div>
+      <div class="modal-body">
+        <div>
+          <% if current_member %>
+              <%= form_for current_user.conversations.build, url: url_for(:controller => 'messages', :action => 'create_cm') do |f| %>
+                  <%= f.collection_select :recipientable_id, current_member.residence.members, :id, :name, class: 'form-control' %>
+                  <br>
+                  <%= f.hidden_field :recipientable_type, value: 'Member' %>
+                  <%= f.hidden_field :sender_type, value: 'Member' %>
+                  <%= f.hidden_field :sender_id, value: current_member.id %>
+                  <br>
+                  <%= f.text_area :content, class: 'form-control' %>
+                  <br>
+                  <%= f.submit('Send' , class: 'btn btn-primary') %>
+              <% end %>
+          <% elsif current_association_admin %>
+              <%= form_for current_user.conversations.build, url: url_for(:controller => 'messages', :action => 'create_cm') do |f| %>
+                  <%= f.collection_select :recipientable_id, current_association_admin.residence_association.members, :id, :name, class: 'form-control' %>
+                  <br>
+                  <%= f.hidden_field :recipientable_type, value: 'AssociationAdmin' %>
+                  <%= f.hidden_field :sender_type, value: 'AssociationAdmin' %>
+                  <%= f.hidden_field :sender_id, value: current_association_admin.id %>
+                  <br>
+                  <%= f.text_area :content, class: 'form-control' %>
+                  <br>
+                  <%= f.submit('Send' , class: 'btn btn-primary') %>
+              <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script type="application/javascript">
+  $('#conversation_content').click(function () {
+    $('').append('<p class="well">'+$(this).value()+'</p>')
+  })
+</script>

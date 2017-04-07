@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+<div class="jumbotron">
+
+  <p>
+    <strong>No:</strong>
+    <%= @house.no %>
+  </p>
+
+  <p>
+    <strong>Name:</strong>
+    <%= @house.name %>
+  </p>
+
+  <p>
+    <strong>Lat:</strong>
+    <%= @house.lat %>
+  </p>
+
+  <p>
+    <strong>Lng:</strong>
+    <%= @house.lng %>
+  </p>
+
+  <p>
+    <strong>Residence association:</strong>
+    <%= @house.residence_association.name %>
+  </p>
+
+  <div id="map" data-lat="<%= @house.lat %>" data-lng="<%= @house.lng %>"></div>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASFS3ZSlTi7HbL6929AItD2aVjGd5ij8Y&callback=initHouseMap"
+          async defer></script>
+
+
+
+  <table class="table">
+    <thead>
+    <tr>
+      <td>Name</td>
+    </tr>
+    </thead>
+    <tbody>
+    <% @house.members.each do |m| %>
+        <tr>
+          <td>
+            <%= m.name %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+</div>

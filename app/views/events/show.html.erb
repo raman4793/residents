@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="well">
+        <p id="notice"><%= notice %></p>
+
+        <p>
+          <h1 style="color: black"><%= @event.title %></h1>
+        </p>
+
+        <p>
+          <strong>Description:</strong>
+          <%= @event.description %>
+        </p>
+
+        <p>
+          <strong>Poster:</strong>
+          <%= image_tag @event.poster.medium_square %>
+        </p>
+
+        <p>
+          <strong>Gallery:</strong>
+        </p>
+
+        <% @event.photos.each do |photo| %>
+            <%= image_tag photo.image.medium_square %>
+        <% end %>
+
+        <%= render 'photos/form', photo: @event.photos.new %>
+        <% if current_association_admin %>
+            <% if @event.residence_association == current_association_admin.residence_association %>
+                <%= link_to 'Edit', edit_event_path(@event) %>
+            <% end %>
+        <% end %>
+
+
+      </div>
+    </div>
+  </div>
+</div>

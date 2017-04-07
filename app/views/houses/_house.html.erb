@@ -1,0 +1,10 @@
+<div class="col-md-12">
+  <div class="">
+    <h4><%= house.name %></h4>
+    <p>T/C No : <%= house.no %></p>
+    <h5 style="text-decoration: underline">Members</h5>
+    <% house.members.each do |member| %>
+        <%= render member %>
+    <% end %>
+  </div>
+</div>

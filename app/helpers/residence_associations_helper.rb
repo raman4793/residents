@@ -1,0 +1,2 @@
+module ResidenceAssociationsHelper
+end

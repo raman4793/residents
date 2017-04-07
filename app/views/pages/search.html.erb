@@ -1,0 +1,103 @@
+<h1>SEARCH</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 well">
+      <div class="container-fluid">
+        <div class="row">
+          <%= search_form_for @search, url: pages_search_path do |f| %>
+              <div class="col-md-6">
+                <%= f.label :name_cont %>
+                <%= f.search_field :name_cont, class: 'form-control' %>
+
+                <%= f.label :house_name_cont %>
+                <%= f.search_field :house_name_cont, class: 'form-control' %>
+              </div>
+
+              <div class="col-md-6">
+
+
+                <%= f.label :no_cont %>
+                <%= f.search_field :no_cont, class: 'form-control' %>
+
+                <%= f.label :blood_group_cont %>
+                <%= f.search_field :blood_group_cont, class: 'form-control' %>
+
+                <%= f.search_field :house_lat_gt, class: 'form-control hide' %>
+                <%= f.search_field :house_lat_lt, class: 'form-control hide' %>
+                <%= f.search_field :house_lng_gt, class: 'form-control hide' %>
+                <%= f.search_field :house_lng_lt , class: 'form-control hide'%>
+              </div>
+
+              <%= f.submit class: 'btn btn-primary' %>
+          <% end %>
+
+        </div>
+      </div>
+
+
+
+      <!--<%= search_form_for @search, url: pages_search_path do |f| %>-->
+          <!--<%= f.condition_fields do |c| %>-->
+              <!--<%= render "condition_fields", f: c %>-->
+          <!--<% end %>-->
+          <!--<p><%= link_to_add_fields "Add Conditions", f, :condition %></p>-->
+          <!--<div class="actions"><%= f.submit "Search" %></div>-->
+      <!--<% end %>-->
+
+      <!--<%= form_tag pages_search_path do |f| %>-->
+          <!--<%= text_field_tag :lat %>-->
+          <!--<%= text_field_tag :lng %>-->
+      <!--<% end %>-->
+
+      <div id="map" data-loc="<%= %>" class="logo">
+
+      </div>
+
+      <%= link_to 'Clear Search', pages_search_url(subdomain: ''), class: 'btn btn-default' %>
+      <br>
+      <br>
+      <br>
+
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASFS3ZSlTi7HbL6929AItD2aVjGd5ij8Y&callback=initSearchMap"
+              async defer></script>
+
+      <% if @members %>
+          <table id="blogs-table" class="table table-bordered" >
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Date of Birth</th>
+              <th>Blood Group</th>
+              <th>Occupation</th>
+              <th>Mobile</th>
+              <th>Designation</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <% @members.each do |member| %>
+                <tr>
+                  <td><%= link_to member.id, member_url(member, subdomain: member.residence_association.subdomain) %></td>
+                  <td><%= member.name %></td>
+                  <td><%= member.email %></td>
+                  <td><%= member.dob %></td>
+                  <td><%= member.blood.group %></td>
+                  <td><%= member.occupation %></td>
+                  <td><%= member.no %></td>
+                  <td><%= member.designation %></td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script type="application/javascript">
+  $(document).ready( function() {
+    $('#blogs-table').dataTable({});
+  } );
+</script>

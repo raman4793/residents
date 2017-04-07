@@ -1,0 +1,15 @@
+<div class="modal-body">
+  <h2>Log in</h2>
+  <%= form_for(:member, :url => session_path(:member)) do |f| %>
+      <%= f.text_field :email, placeholder: 'Enter your email', class: 'form-control' %>
+      <br>
+      <%= f.password_field :password, placeholder: 'Enter your password', class: 'form-control' %>
+      <br>
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+      <br>
+      <%= f.submit 'Sign in', class: 'btn btn-primary btn-block' %>
+      <br>
+      <%= link_to "Forgot your password?", new_password_path(:member) %>
+  <% end %>
+</div>

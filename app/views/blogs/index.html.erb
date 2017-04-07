@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 well">
+      <p id="notice"><%= notice %></p>
+
+      <h1>Blogs</h1>
+
+      <table id="blogs-table" class="table table-bordered" >
+        <thead>
+        <tr>
+          <th>Title</th>
+          <th>Content</th>
+          <th>Member</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% @blogs.each do |blog| %>
+            <tr>
+              <td><%= link_to blog.title, blog_url(blog, subdomain: current_member.residence.subdomain) %></td>
+              <td><%= blog.content.truncate(50) %></td>
+              <td><%= link_to blog.member.name, member_url(blog.member, subdomain: current_member.residence.subdomain) %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+      <br>
+
+      <%= link_to 'New Blog', new_blog_path %>
+
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+</div>
+
+<script type="application/javascript">
+  $(document).ready( function() {
+    $('#blogs-table').dataTable({
+//      "columnDefs": [
+//        {
+//          "targets": [ 3 ],
+//          "searchable": false,
+//          "sortable": false
+//        },
+//        {
+//          "targets": [ 4 ],
+//          "searchable": false,
+//          "sortable": false
+//        },
+//        {
+//          "targets": [ 5 ],
+//          "searchable": false,
+//          "sortable": false
+//        }
+//      ]
+
+    });
+  } );
+</script>

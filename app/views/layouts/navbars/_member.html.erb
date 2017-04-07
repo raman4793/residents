@@ -1,0 +1,77 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="navbar-header">
+
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+    </button>
+
+    <a class="navbar-brand" href="<%= root_url(subdomain: '') %>"> <%= image_tag current_member.residence.logo, class: 'img-responsive img-circle' %></a>
+  </div>
+
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+    <ul class="nav navbar-nav navbar-right">
+
+      <li>
+        <%= link_to 'Home', index_path(subdomain: current_member.residence.subdomain) %>
+      </li>
+      <li>
+        <%= link_to 'Notifications', notifications_path(subdomain: current_member.residence.subdomain) %>
+      </li>
+      <li>
+        <%= link_to 'Messages', conversations_url(subdomain: current_member.residence.subdomain) %>
+      </li>
+      <li>
+        <%= link_to 'View Blogs', blogs_url(subdomain: current_member.residence.subdomain) %>
+      </li>
+      <li>
+        <%= link_to 'New Blog', new_blog_url(subdomain: current_member.residence.subdomain) %>
+      </li>
+      <li>
+        <%= link_to 'My Blog', my_blogs_url(current_member, subdomain: current_member.residence.subdomain) %>
+      </li>
+      <li>
+        <a id="modal-948475" href="#modal-container-948475" role="button" class="" data-toggle="modal">Register Complaint</a>
+      </li>
+      <li>
+        <%= link_to 'My Association', residence_association_url(current_member.residence, subdomain: current_member.residence.subdomain) %>
+      </li>
+      <li>
+        <%= link_to 'Search', pages_search_url(subdomain: '') %>
+      </li>
+      <li>
+        <%= link_to 'Edit Account', edit_member_registration_url(current_member, subdomain: current_member.residence.subdomain) %>
+      </li>
+      <li>
+        <%= link_to 'Sign Out', destroy_member_session_path, method: :delete %>
+      </li>
+
+      <li>Te</li>
+    </ul>
+  </div>
+
+</nav>
+
+
+<div class="modal fade" id="modal-container-948475" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          ×
+        </button>
+        <h4 class="modal-title" id="myModalLabel">
+          Register Complaint
+        </h4>
+      </div>
+      <div class="modal-body">
+        <%= render 'complaints/form', complaint: Complaint.new(sendable_id: current_member.id, sendable_type: 'Member', recipient_id: current_member.residence_association.association_admin.id, recipient_type: 'AssociationAdmin') %>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+
+  </div>
+
+</div>

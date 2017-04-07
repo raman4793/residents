@@ -1,0 +1,16 @@
+rails g devise:install
+rails g devise Admin name:string
+rails g scaffold Blood group:string
+rails g devise AssociationAdmin name:string no:string blood:references
+rails g devise Member name:string no:string blood:references house:references
+rails g scaffold ResidenceAssociation name:string subdomain:string lat:decimal lng:decimal association_admin:references approved:boolean
+rails g scaffold House no:string name:string lat:decimal lng:decimal residence_association:references
+
+rails generate devise:views admins
+rails generate devise:views association_admins
+rails generate devise:views members
+
+rails generate devise:controllers admins
+rails generate devise:controllers association_admins
+rails generate devise:controllers members
+

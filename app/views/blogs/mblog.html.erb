@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 well">
+      <p id="notice"><%= notice %></p>
+
+      <h1>My Blogs</h1>
+
+      <table id="blogs-table" class="table table-bordered" >
+        <thead>
+        <tr>
+          <th>Title</th>
+          <th>Content</th>
+          <th>Member</th>
+          <th colspan="3"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% @blogs.each do |blog| %>
+            <tr>
+              <td><%= blog.title %></td>
+              <td><%= blog.content.truncate(50) %></td>
+              <td><%= blog.member.name %></td>
+              <td><%= link_to 'Show', blog %></td>
+              <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
+              <td><%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+      <br>
+
+      <%= link_to 'New Blog', new_blog_path %>
+
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+</div>
+
+<script type="application/javascript">
+  $(document).ready( function() {
+    $('#blogs-table').dataTable({
+      "columnDefs": [
+        {
+          "targets": [ 3 ],
+          "searchable": false,
+          "sortable": false
+        },
+        {
+          "targets": [ 4 ],
+          "searchable": false,
+          "sortable": false
+        },
+        {
+          "targets": [ 5 ],
+          "searchable": false,
+          "sortable": false
+        }
+      ]
+
+    });
+  } );
+</script>

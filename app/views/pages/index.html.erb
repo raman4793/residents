@@ -1,0 +1,13 @@
+<% if current_user == nil %>
+    <%= render 'layouts/home' %>
+<% elsif current_association_admin %>
+    <% if current_association_admin.residence_association %>
+        <% if current_association_admin.residence_association.approved %>
+            <%= render 'residence_associations/show', association: @association %>
+        <% else %>
+            <h1>WAIT FOR ADMIN TO VERIFY YOUR REQUEST</h1>
+        <% end %>
+    <% else %>
+        <%= render 'residence_associations/form', residence_association: ResidenceAssociation.new %>
+    <% end %>
+<% end %>

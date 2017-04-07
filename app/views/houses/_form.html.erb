@@ -1,0 +1,70 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>
+
+<%= form_for(house) do |f| %>
+    <div class="container-fluid">
+      <div class="row well">
+        <div class="col-md-6">
+          <% if house.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(house.errors.count, "error") %> prohibited this house from being saved:</h2>
+
+                <ul>
+                  <% house.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+          <% end %>
+
+          <div class="field">
+            <%= f.label :no %>
+            <%= f.text_field :no, class: 'form-control' %>
+          </div>
+
+          <div class="field">
+            <%= f.label :name %>
+            <%= f.text_field :name, class: 'form-control' %>
+          </div>
+
+          <div class="field">
+            <%= f.label :lat %>
+            <%= f.text_field :lat, class: 'form-control' %>
+          </div>
+
+          <div class="field">
+            <%= f.label :lng %>
+            <%= f.text_field :lng, class: 'form-control' %>
+          </div>
+
+          <div class="field">
+            <%= f.label :residence_association_id %>
+            <%= f.hidden_field :residence_association_id, value: current_association_admin.residence_association.id %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit class: 'btn btn-primary' %>
+          </div>
+
+        </div>
+
+        <div class="col-md-6">
+          <div id="map" data-lat="<%= current_association_admin.residence_association.lat %>" data-lng="<%= current_association_admin.residence_association.lng %>">
+
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASFS3ZSlTi7HbL6929AItD2aVjGd5ij8Y&callback=initHouseMap"
+        async defer></script>

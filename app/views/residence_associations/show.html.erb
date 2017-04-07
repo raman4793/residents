@@ -1,0 +1,136 @@
+<% if @residence_association.try(:approved) %>
+    <% if @residence_association.try(:events).try(:count) == 0 %>
+
+    <% else %>
+
+        <% events = @residence_association.try(:events).first(3) %>
+
+        <div class="carousel slide" id="carousel-55303">
+          <ol class="carousel-indicators">
+            <li class="active" data-slide-to="0" data-target="#carousel-55303">
+            </li>
+            <li data-slide-to="1" data-target="#carousel-55303">
+            </li>
+            <li data-slide-to="2" data-target="#carousel-55303">
+            </li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="item active">
+              <%= image_tag events.first.poster%>
+              <div class="carousel-caption">
+                <% if current_user == nil %>
+                    <p>
+                      <%= link_to 'Register to this association', new_member_registration_path, class: 'btn btn-danger' %>
+                    </p>
+                <% end %>
+                <h4>
+                  <%= events.first.title%>
+                </h4>
+                <p>
+                  <%= events.first.description%>
+                </p>
+              </div>
+            </div>
+            <% if events.second %>
+                <div class="item">
+                  <%= image_tag events.second.poster%>
+                  <div class="carousel-caption">
+                    <% if current_user == nil %>
+                        <p>
+                          <%= link_to 'Register to this association', new_member_registration_path, class: 'btn btn-danger' %>
+                        </p>
+                    <% end %>
+                    <h4>
+                      <%= events.second.title%>
+                    </h4>
+                    <p>
+                      <%= events.second.description%>
+                    </p>
+                  </div>
+                </div>
+            <% end %>
+            <% if events.third %>
+                <div class="item">
+                  <%= image_tag events.third.poster%>
+                  <div class="carousel-caption">
+                    <% if current_user == nil %>
+                        <p>
+                          <%= link_to 'Register to this association', new_member_registration_path, class: 'btn btn-danger' %>
+                        </p>
+                    <% end %>
+                    <h4>
+                      <%= events.third.title%>
+                    </h4>
+                    <p>
+                      <%= events.third.description%>
+                    </p>
+                  </div>
+                </div>
+            <% end %>
+          </div> <a class="left carousel-control" href="#carousel-55303" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-55303" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+        </div>
+
+    <% end %>
+
+
+    <div class="row">
+
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="panel-group" id="panel-496048">
+          <% @residence_association.try(:houses).try(:each) do |house| %>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-496048" href="#panel-element-<%= house.id %>"><%= house.no %> - <%= house.name %></a>
+                </div>
+                <div id="panel-element-<%= house.id %>" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <table class="table table-bordered">
+                      <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                        <th>Blood Group</th>
+                        <th>Occupation</th>
+                      </tr>
+                      </thead>
+
+                      <tbody>
+                      <% house.try(:members).try(:each) do |member| %>
+                          <tr>
+                            <td><%= member.name %></td>
+                            <td><%= member.email %></td>
+                            <td><%= member.mobile %></td>
+                            <td><%= member.blood.group %></td>
+                            <td><%= member.occupation %></td>
+                          </tr>
+                      <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+
+    </div>
+    </div>
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASFS3ZSlTi7HbL6929AItD2aVjGd5ij8Y&callback=initMap"
+            async defer></script>
+
+<% else %>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <h1>Wait till the admin approves your request for association space.</h1>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+    </div>
+<% end %>

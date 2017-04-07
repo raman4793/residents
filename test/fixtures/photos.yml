@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  image: MyString
+  uploadable_id: 1
+  uploadable_type: MyString
+
+two:
+  image: MyString
+  uploadable_id: 1
+  uploadable_type: MyString

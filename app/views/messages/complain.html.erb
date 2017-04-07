@@ -1,0 +1,21 @@
+<div class="well">
+  <% if current_association_admin %>
+      <div>
+        <%= form_for current_user.conversations.build, url: url_for(:controller => 'messages', :action => 'create_cm') do |f| %>
+            <%= f.collection_select :recipientable_id, Admin.all, :id, :name %>
+            <%= f.hidden_field :recipientable_type, value: 'Admin' %>
+            <%= f.text_area :content %>
+            <%= f.submit('Send') %>
+        <% end %>
+      </div>
+  <% elsif current_member %>
+      <div>
+        <%= form_for current_user.conversations.build, url: url_for(:controller => 'messages', :action => 'create_cm') do |f| %>
+            <%= f.hidden_field :recipientable_id, value: current_member.admin.id %>
+            <%= f.hidden_field :recipientable_type, value: 'AssociationAdmin' %>
+            <%= f.text_area :content %>
+            <%= f.submit('Send') %>
+        <% end %>
+      </div>
+  <% end %>
+</div>

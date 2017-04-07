@@ -1,0 +1,68 @@
+<%= form_for(residence_association, multipart: true) do |f| %>
+  <div class="container-fluid">
+    <div class="row well">
+      <div class="col-md-6">
+        <% if residence_association.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(residence_association.errors.count, "error") %> prohibited this residence_association from being saved:</h2>
+
+              <ul>
+                <% residence_association.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <div class="field">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :lat %>
+          <%= f.text_field :lat, class: 'form-control' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :lng %>
+          <%= f.text_field :lng, class: 'form-control' %>
+        </div>
+
+        <% if residence_association.subdomain == '' %>
+            <div class="field">
+              <%= f.label :subdomain %>
+              <%= f.text_field :subdomain, class: 'form-control' %>
+            </div>
+        <% end %>
+
+        <div class="field">
+          <%= f.label :logo %>
+          <%= f.file_field :logo %>
+        </div>
+
+        <% if admin_signed_in? %>
+            <div class="field">
+              <%= f.label :approved %>
+              <%= f.check_box :approved, class: 'form-control' %>
+            </div>
+        <% end %>
+
+        <div class="actions">
+          <%= f.submit class: 'btn btn-primary' %>
+        </div>
+
+
+      </div>
+
+
+      <div class="col-md-6">
+        <div id="map" data-lat="<%= residence_association.lat %>" data-lng="<%= residence_association.lng %>">
+
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASFS3ZSlTi7HbL6929AItD2aVjGd5ij8Y&callback=initMap"
+        async defer></script>

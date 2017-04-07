@@ -1,0 +1,38 @@
+<%= form_for(complaint) do |f| %>
+  <% if complaint.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(complaint.errors.count, "error") %> prohibited this complaint from being saved:</h2>
+
+      <ul>
+      <% complaint.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.text_area :content, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :sendable_id %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :sendable_type %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :recipient_id %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :recipient_type %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Residence</title>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application'%>
+    <%= javascript_include_tag 'application'%>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+
+  <body style="padding-bottom: 5px">
+    <div id="wrapper" class="cover">
+      <div class="container-fluid">
+        <div about="row">
+          <div about="col-md-12">
+            <%= render 'layouts/navbar' %>
+          </div>
+        </div>
+        <div class="row adjust">
+          <div class="col-md-12">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12 navbar-fixed-bottom" style="background-color: #F5F5F5">
+            <footer >&copy; 2017 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></footer>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <!--<footer class="footer navbar">-->
+    <!--<p>&copy; 2017 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>-->
+  <!--</footer>-->
+</html>

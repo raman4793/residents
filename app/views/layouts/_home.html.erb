@@ -1,0 +1,137 @@
+<div style="padding: 0px">
+  <div class="carousel slide" id="carousel-55303">
+    <ol class="carousel-indicators">
+      <li class="active" data-slide-to="0" data-target="#carousel-55303">
+      </li>
+      <li data-slide-to="1" data-target="#carousel-55303">
+      </li>
+      <li data-slide-to="2" data-target="#carousel-55303">
+      </li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="item active">
+        <%= image_tag 'car1.jpg'%>
+        <div class="carousel-caption">
+          <h1><font color="56ac3f">
+            RESIDENCE ASSOCIATION MANAGEMENT SYSTEM</font>
+          </h1>
+          <p>
+
+          </p>
+        </div>
+      </div>
+      <div class="item">
+        <%= image_tag 'car2.jpg' %>
+        <div class="carousel-caption">
+          <h1><font color="255019">
+            RESIDENCE ASSOCIATION MANAGEMENT SYSTEM</font>
+          </h1>
+          </h2>
+
+          </p>
+        </div>
+      </div>
+      <div class="item">
+        <%= image_tag 'car3.jpg' %>
+        <div class="carousel-caption">
+          <h1>
+            <font color="67c113">
+              RESIDENCE ASSOCIATION MANAGEMENT SYSTEM</font>
+          </h1>
+          </h2>
+          <p>
+
+          </p>
+        </div>
+      </div>
+    </div> <a class="left carousel-control" href="#carousel-55303" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-55303" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="jumbotron well">
+        <h2><font color="255019">
+          RESIDENCE ASSOCIATION</font>
+        </h2>
+        <p>
+          Residents' associations are organisations formed by groups of people from a specific geographic community who come together to address issues within their local area and act as a voice for their local community
+        </p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="jumbotron well">
+        <h2><font color="255019">
+          OUR SPECIALITIES</font>
+        </h2>
+        <p>
+          We provide sub domain for each residence association for creation their website.
+
+        <p>There is no existing webservices that can provide our services.</p>
+        </p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="jumbotron well">
+        <h2><font color="255019">
+          OUR SERVICES</font>
+        </h2>
+        <p>
+          *Seperate subdomain for each residence associations</p>
+
+        <p> *Search by-Blood group,name,designation,house number</p>
+
+        <p> *Location access services</p>
+
+        <p> *Events postings</p>
+
+        <p>*Messaging,notification,complaint registration,Feedback</p>
+        <p> *Blog Facility added</p>
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <% associations = ResidenceAssociation.first(4) %>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="well">
+        <%= image_tag associations.first.logo.mlp, class: 'img-responsive logo'  %>
+        <h2>
+          <%= link_to associations.first.name, residence_association_url(associations.first, subdomain: associations.first.subdomain) %>
+        </h2>
+        <p>
+          <%= truncate(associations.first.description, length: 200) %>
+        </p>
+        <p>
+          <a class="btn btn-primary btn-large" href="<%= residence_association_url(associations.first, subdomain: associations.first.subdomain) %>">Learn more</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="well">
+        <div class="center-block">
+          <%= image_tag associations.second.logo.mlp, class: '  img-responsive logo'  %>
+        </div>
+        <h2>
+          <%= link_to associations.second.name, residence_association_url(associations.second, subdomain: associations.second.subdomain) %>
+        </h2>
+        <p>
+          <%= truncate(associations.second.description, length: 200) %>
+        </p>
+        <p>
+          <a class="btn btn-primary btn-large" href="<%= residence_association_url(associations.second, subdomain: associations.second.subdomain) %>">Learn more</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="application/javascript">
+
+</script>

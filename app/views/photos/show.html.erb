@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @photo.image %>
+</p>
+
+<p>
+  <strong>Uploadable:</strong>
+  <%= @photo.uploadable_id %>
+</p>
+
+<p>
+  <strong>Uploadable type:</strong>
+  <%= @photo.uploadable_type %>
+</p>
+
+<%= link_to 'Edit', edit_photo_path(@photo) %> |
+<%= link_to 'Back', photos_path %>

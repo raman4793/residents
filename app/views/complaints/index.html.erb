@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+<div class="jumbotron">
+
+  <h1>Complaints</h1>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Content</th>
+      <th>Sendable</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @complaints.each do |complaint| %>
+        <tr>
+          <td><%= complaint.content %></td>
+          <td><%= complaint.sender.name%></td>
+          <td><%= link_to 'Destroy', complaint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'New Complaint', new_complaint_path %>
+
+</div>
