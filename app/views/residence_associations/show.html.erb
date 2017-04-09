@@ -1,4 +1,4 @@
-<% if @residence_association.try(:approved) %>
+<% if @residence_association %>
     <% if @residence_association.try(:events).try(:count) == 0 %>
 
     <% else %>

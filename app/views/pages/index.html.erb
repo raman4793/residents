@@ -10,4 +10,6 @@
     <% else %>
         <%= render 'residence_associations/form', residence_association: ResidenceAssociation.new %>
     <% end %>
+<% else %>
+    <%= render 'members/show', member: current_member %>
 <% end %>

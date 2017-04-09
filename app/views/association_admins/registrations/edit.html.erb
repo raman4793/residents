@@ -19,7 +19,7 @@
 
           <div class="field">
             <%= f.label :blood_id %><br />
-            <%= f.collection_select :blood_id, Blood.all, :group, :id, {}, class: 'form-control' %>
+            <%= f.collection_select :blood_id, Blood.all, :id, :group, {}, class: 'form-control' %>
           </div>
 
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

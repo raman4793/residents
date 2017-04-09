@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   def load_association
     puts('Loaded the association from subdomain')
-    @association = ResidenceAssociation.where(subdomain: request.subdomain, approved: true)
+    @association = ResidenceAssociation.where(subdomain: request.subdomain, approved: true).first
   end
 
   def authenticate_any!

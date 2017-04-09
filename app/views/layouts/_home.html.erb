@@ -95,41 +95,51 @@
 
 
 
-  <% associations = ResidenceAssociation.first(4) %>
+  <% associations = ResidenceAssociation.last(4) %>
 
-  <div class="row">
-    <div class="col-md-6">
-      <div class="well">
-        <%= image_tag associations.first.logo.mlp, class: 'img-responsive logo'  %>
-        <h2>
-          <%= link_to associations.first.name, residence_association_url(associations.first, subdomain: associations.first.subdomain) %>
-        </h2>
-        <p>
-          <%= truncate(associations.first.description, length: 200) %>
-        </p>
-        <p>
-          <a class="btn btn-primary btn-large" href="<%= residence_association_url(associations.first, subdomain: associations.first.subdomain) %>">Learn more</a>
-        </p>
-      </div>
-    </div>
+  <% if associations %>
+      <div class="row">
 
-    <div class="col-md-6">
-      <div class="well">
-        <div class="center-block">
-          <%= image_tag associations.second.logo.mlp, class: '  img-responsive logo'  %>
-        </div>
-        <h2>
-          <%= link_to associations.second.name, residence_association_url(associations.second, subdomain: associations.second.subdomain) %>
-        </h2>
-        <p>
-          <%= truncate(associations.second.description, length: 200) %>
-        </p>
-        <p>
-          <a class="btn btn-primary btn-large" href="<%= residence_association_url(associations.second, subdomain: associations.second.subdomain) %>">Learn more</a>
-        </p>
+        <% if associations.first %>
+            <div class="col-md-6">
+              <div class="well">
+                <%= image_tag associations.first.logo.mlp, class: 'img-responsive logo'  %>
+                <h2>
+                  <%= link_to associations.first.name, residence_association_url(associations.first, subdomain: associations.first.subdomain) %>
+                </h2>
+                <p>
+                  <%= truncate(associations.first.description, length: 200) %>
+                </p>
+                <p>
+                  <a class="btn btn-primary btn-large" href="<%= residence_association_url(associations.first, subdomain: associations.first.subdomain) %>">Learn more</a>
+                </p>
+              </div>
+            </div>
+        <% end %>
+
+
+        <% if associations.second %>
+            <div class="col-md-6">
+              <div class="well">
+                <div class="center-block">
+                  <%= image_tag associations.second.logo.mlp, class: '  img-responsive logo'  %>
+                </div>
+                <h2>
+                  <%= link_to associations.second.name, residence_association_url(associations.second, subdomain: associations.second.subdomain) %>
+                </h2>
+                <p>
+                  <%= truncate(associations.second.description, length: 200) %>
+                </p>
+                <p>
+                  <a class="btn btn-primary btn-large" href="<%= residence_association_url(associations.second, subdomain: associations.second.subdomain) %>">Learn more</a>
+                </p>
+              </div>
+            </div>
+        <% end %>
+
       </div>
-    </div>
-  </div>
+  <% end %>
+
 </div>
 
 <script type="application/javascript">

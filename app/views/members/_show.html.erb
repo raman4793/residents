@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="row well">
+    <div class="col-md-6">
+      <span>
+        <ul>
+        <li>Name : <%= member.name %></li>
+        <li>Number : <%= member.no %></li>
+        <li>Blood Group : <%= member.blood.group %></li>
+        <li>DOB : <%= member.dob %></li>
+        <li>Occupation : <%= member.occupation %></li>
+      </ul>
+      </span>
+    </div>
+    <div class="col-md-6">
+      <span>
+        <ul>
+        <li>Designation : <%= member.designation %></li>
+        <li>House : <%= member.house.name %></li>
+        <li>Office : <%= member.office_number %></li>
+        <li>Association : <%= member.house.residence_association.name %></li>
+        <li>Occupation : <%= member.occupation %></li>
+      </ul>
+      </span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 jumbotron">
+      <p id="notice"><%= notice %></p>
+
+      <h1>Blogs</h1>
+
+      <table id="blogs-table" class="table table-bordered" >
+        <thead>
+        <tr>
+          <th>Title</th>
+          <th>Content</th>
+          <th colspan="3"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% member.blogs.each do |blog| %>
+            <tr>
+              <td><%= blog.title %></td>
+              <td><%= blog.content.truncate(50) %></td>
+              <td><%= link_to 'Show', blog %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+</div>
+
+<script type="application/javascript">
+  $(document).ready( function() {
+    $('#blogs-table').dataTable({
+      "columnDefs": [
+        {
+          "targets": [ 3 ],
+          "searchable": false,
+          "sortable": false
+        },
+        {
+          "targets": [ 4 ],
+          "searchable": false,
+          "sortable": false
+        },
+        {
+          "targets": [ 5 ],
+          "searchable": false,
+          "sortable": false
+        }
+      ]
+
+    });
+  } );
+</script>

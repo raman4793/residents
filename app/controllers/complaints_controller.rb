@@ -14,7 +14,7 @@ class ComplaintsController < ApplicationController
   def create
     @complaint = Complaint.new(complaint_params)
     @complaint.save
-    redirect_to request.original_url
+    redirect_to root_url
   end
 
   def destroy
