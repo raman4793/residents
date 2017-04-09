@@ -55,7 +55,7 @@
               <% end %>
           <% elsif current_association_admin %>
               <%= form_for current_user.conversations.build, url: url_for(:controller => 'messages', :action => 'create_cm') do |f| %>
-                  <%= f.collection_select :recipientable_id, current_association_admin.residence_association.members, :id, :name, class: 'form-control' %>
+                  <%= f.collection_select :recipientable_id, current_association_admin.messagable, :id, :name, class: 'form-control' %>
                   <br>
                   <%= f.hidden_field :recipientable_type, value: 'Member' %>
                   <%= f.hidden_field :sender_type, value: 'AssociationAdmin' %>

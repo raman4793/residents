@@ -35,7 +35,7 @@ class AssociationAdmin < ApplicationRecord
     if conversation.nil?
       conversation = Conversation.create({sendable: self, recipientable: to})
     end
-    conversation.messages.create(content: msg)
+    conversation.messages.create(content: msg, sender_type: 'Member', sender_id: id)
   end
 
   def get_messages(from)
@@ -61,5 +61,14 @@ class AssociationAdmin < ApplicationRecord
     sent = Conversation.where({sendable: self})
     recieved = Conversation.where({recipientable: self})
     conversations = sent.or(recieved)
+  end
+
+  def messagable
+    c_ids = conversations.pluck(:recipient_id)
+    if c_ids.empty?
+      Member.all
+    else
+      Member.where('id NOT IN ?', c_ids)
+    end
   end
 end
